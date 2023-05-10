@@ -5,4 +5,4 @@ export type EventsType = {
   image: string;
   description: string;
 };
-export type EventsListType = { events: EventsType[] };
+export type EventsListType = EventsType[];

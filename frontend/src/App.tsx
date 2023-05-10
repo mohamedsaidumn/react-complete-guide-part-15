@@ -8,6 +8,7 @@ import EventDetailPage from "./pages/EventDetailPage";
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import EventsRootLayout from "./pages/EventsRootLayoutPage";
+import { EventsListType } from "./types";
 
 // Challenge / Exercise
 
@@ -44,7 +45,22 @@ const router = createBrowserRouter([
         element: <EventsRootLayout />,
         errorElement: <ErrorPage />,
         children: [
-          { index: true, element: <EventsPage /> },
+          {
+            index: true,
+            element: <EventsPage />,
+            loader: async (): Promise<EventsListType> => {
+              const response = await fetch("http://localhost:8080/events");
+              if (!response.ok) {
+                //...Deal with it Later
+              } else {
+                const resData = await response.json();
+                return resData.events as EventsListType;
+              }
+
+              const ret: EventsListType = [];
+              return ret;
+            },
+          },
           { path: ":eventId", element: <EventDetailPage /> },
           { path: "new", element: <NewEventPage /> },
           { path: ":eventId/edit", element: <EditEventPage /> },
