@@ -5,7 +5,7 @@ function EventDetailPage() {
 
   return (
     <Fragment>
-      <h1>EventDetailPage</h1> <p>{params.id}</p>
+      <h1>EventDetailPage</h1> <p>{params.eventId}</p>
     </Fragment>
   );
 }
