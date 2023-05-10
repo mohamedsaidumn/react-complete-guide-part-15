@@ -4,22 +4,21 @@ import { useLoaderData } from "react-router-dom";
 import { EventsListType } from "../types";
 
 function EventsPage() {
-  const events = useLoaderData();
-  return (
-    <Fragment>{<EventsList events={events as EventsListType} />}</Fragment>
-  );
+  const data: any = useLoaderData();
+  const events: EventsListType = data.events;
+
+  return <Fragment>{<EventsList events={events} />}</Fragment>;
 }
 
-export const loader = async (): Promise<EventsListType> => {
+export const loader = async (): Promise<Response> => {
   const response = await fetch("http://localhost:8080/events");
   if (!response.ok) {
     //...Deal with it Later
+    throw Error("Something Went wrong");
   } else {
-    const resData = await response.json();
-    return resData.events as EventsListType;
+    const resData = await response;
+    return resData;
   }
-  const ret: EventsListType = [];
-  return ret;
 };
 
 export default EventsPage;

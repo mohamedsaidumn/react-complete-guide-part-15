@@ -8,7 +8,6 @@ import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import EventsRootLayout from "./pages/EventsRootLayoutPage";
 import EventsPage, { loader as eventsLoader } from "./pages/EventsPage";
-
 const router = createBrowserRouter([
   {
     path: "/",
