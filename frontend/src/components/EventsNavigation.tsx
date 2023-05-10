@@ -1,4 +1,4 @@
-import classes from './EventsNavigation.module.css';
+import classes from "./EventsNavigation.module.css";
 
 function EventsNavigation() {
   return (
