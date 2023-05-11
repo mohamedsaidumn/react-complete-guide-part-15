@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import EventsList from "../components/EventsList";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, json } from "react-router-dom";
 import { EventsListType } from "../types";
 
 function EventsPage() {
@@ -15,9 +15,15 @@ export const loader = async (): Promise<Response> => {
   if (!response.ok) {
     //...Deal with it Later
     // throw Error("Something Went wrong");
-    throw new Response(JSON.stringify({ message: "Could not fetch events." }), {
-      status: 500,
-    });
+    // throw new Response(JSON.stringify({ message: "Could not fetch events." }), {
+    //   status: 500,
+    // });
+    throw json(
+      { message: "Could not fetch events." },
+      {
+        status: 500,
+      }
+    );
   } else {
     const resData = await response;
     return resData;
