@@ -1,11 +1,11 @@
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { json } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
+import { useRouteLoaderData } from "react-router-dom";
 import EventItem from "../components/EventItem";
 function EventDetailPage() {
   const params = useParams();
-  const data: any = useLoaderData();
+  const data: any = useRouteLoaderData("event-detail");
 
   return (
     <Fragment>
