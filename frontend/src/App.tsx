@@ -18,7 +18,6 @@ const router = createBrowserRouter([
       {
         path: "events",
         element: <EventsRootLayout />,
-        errorElement: <ErrorPage />,
         children: [
           {
             index: true,

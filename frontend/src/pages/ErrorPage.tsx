@@ -1,13 +1,29 @@
 import { Fragment } from "react";
 import MainNavigation from "../components/MainNavigation";
+import PageContent from "../components/PageContent";
+import { useRouteError } from "react-router-dom";
 
 function ErrorPage() {
+  const error: any = useRouteError();
+
+  let title = "An error occurred!";
+  let message = "Something went wrong!";
+
+  if (error.status === 500) {
+    message = JSON.parse(error.data).message;
+  }
+
+  if (error.status === 404) {
+    title = "Not found!";
+    message = "Could not find resource or page.";
+  }
+
   return (
     <Fragment>
-      <main>
-        <h1>An error occurred!</h1>
-        <p>Could not find this page!</p>
-      </main>
+      <MainNavigation />
+      <PageContent title={title}>
+        <p>{message}</p>
+      </PageContent>
     </Fragment>
   );
 }
