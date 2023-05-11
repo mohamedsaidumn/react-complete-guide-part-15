@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./EventForm.module.css";
 import { Interface } from "readline";
 import { EventsType } from "../types";
+import { Form } from "react-router-dom";
 
 interface EventFormProps {
   event?: EventsType;
@@ -16,7 +17,7 @@ function EventForm(props: EventFormProps) {
   }
 
   return (
-    <form className={classes.form}>
+    <Form method="POST" className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
         <input
@@ -63,7 +64,7 @@ function EventForm(props: EventFormProps) {
         </button>
         <button>Save</button>
       </div>
-    </form>
+    </Form>
   );
 }
 
