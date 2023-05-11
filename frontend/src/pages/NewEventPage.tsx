@@ -17,13 +17,17 @@ export async function action(props: any) {
     description: data.get("description"),
   };
 
-  const response = await fetch("http://localhost:8080/events", {
+  const response: Response = await fetch("http://localhost:8080/events", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(eventData),
   });
+
+  if (response.status === 422) {
+    return response;
+  }
 
   if (!response.ok) {
     throw json({ message: "Could not save event." }, { status: 500 });
