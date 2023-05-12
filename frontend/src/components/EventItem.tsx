@@ -11,6 +11,8 @@ function EventItem(props: EventFormProps) {
   const submit = useSubmit();
   const { event } = props;
 
+  console.log(isEventType(event));
+
   function startDeleteHandler() {
     const proceed = window.confirm("Are you sure?");
 
@@ -30,6 +32,17 @@ function EventItem(props: EventFormProps) {
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>
+  );
+}
+
+function isEventType(variable: any): variable is EventsType {
+  return (
+    typeof variable === "object" &&
+    typeof variable.id === "string" &&
+    typeof variable.title === "string" &&
+    typeof variable.date === "string" &&
+    typeof variable.image === "string" &&
+    typeof variable.description === "string"
   );
 }
 
