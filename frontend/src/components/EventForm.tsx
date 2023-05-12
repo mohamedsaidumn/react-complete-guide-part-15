@@ -92,7 +92,6 @@ function EventForm(props: EventFormProps) {
 }
 
 export async function action(props: any) {
-  console.log("Hello");
   const { request, params } = props;
 
   const method = request.method;
