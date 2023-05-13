@@ -6,6 +6,7 @@ import EventItem from "../components/EventItem";
 import EventsList from "../components/EventsList";
 import { EventsListType } from "../types";
 import { EventsType } from "../types";
+import { getAuthToken } from "../util/auth";
 
 function EventDetailPage() {
   const params = useParams();
@@ -82,8 +83,15 @@ export const loader = async (props: any) => {
 export async function action(props: any) {
   const { request, params } = props;
   const eventId = params.eventId;
+
+  const token = getAuthToken();
+
   const response = await fetch("http://localhost:8080/events/" + eventId, {
     method: request.method,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
   });
 
   if (!response.ok) {

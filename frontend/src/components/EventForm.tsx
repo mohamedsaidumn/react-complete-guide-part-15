@@ -10,6 +10,7 @@ import classes from "./EventForm.module.css";
 import { Interface } from "readline";
 import { EventsType } from "../types";
 import { Form } from "react-router-dom";
+import { getAuthToken } from "../util/auth";
 
 interface EventFormProps {
   event?: EventsType;
@@ -111,11 +112,13 @@ export async function action(props: any) {
     const eventId = params.eventId;
     url = "http://localhost:8080/events/" + eventId;
   }
+  const token = getAuthToken();
 
   const response: Response = await fetch(url, {
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(eventData),
   });
