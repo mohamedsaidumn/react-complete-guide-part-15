@@ -39,6 +39,11 @@ export async function action({ request }: any) {
 
   localStorage.setItem("token", token);
 
+  //Token expires one hour in the future
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem("expiration", expiration.toISOString());
+
   return redirect("/");
 }
 
